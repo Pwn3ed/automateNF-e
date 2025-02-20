@@ -35,10 +35,10 @@ def login(browser, login_data):
 
 
 # C H A N G E  D A T A
-def change_data(browser, df, i):
-     data_change = '03062023'
-     browser.find_element_by_xpath('//*[@id="formEmissaoNFConvencional:imDataCompetencia_input"]').click()
-     browser.find_element_by_xpath('//*[@id="formEmissaoNFConvencional:imDataCompetencia_input"]').send_keys(data_change + Keys.TAB)
+# def change_data(browser, df, i):
+     # data_change = '03062023'
+     # browser.find_element_by_xpath('//*[@id="formEmissaoNFConvencional:imDataCompetencia_input"]').click()
+     # browser.find_element_by_xpath('//*[@id="formEmissaoNFConvencional:imDataCompetencia_input"]').send_keys(data_change + Keys.TAB)
     
 
 def find_cpf_cpnj(browser, df, i):
