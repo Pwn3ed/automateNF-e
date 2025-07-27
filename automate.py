@@ -16,12 +16,15 @@ import os
 
 def data_read():
     data = pd.read_excel('boleto.xlsx')
-    df = pd.DataFrame(data, columns = ['CPF', 'VALOR', 'NOME', 'BOOLEAN'])
+    # df = pd.DataFrame(data, columns = ['CPF', 'VALOR', 'NOME', 'BOOLEAN'])
+    df = pd.DataFrame(data)
 
     load_dotenv()
-    username = os.getenv("USERNAME")
+    username = os.getenv("LOGIN")
     password = os.getenv("PASSWORD")
-    path = os.getenv("PATH")
+    path = os.getenv("PATH_FILE")
+    
+
 
     return df, username, password, path
 
@@ -37,6 +40,7 @@ def open_browser():
     # options = webdriver.FirefoxOptions()
     # driver = webdriver.Firefox(options=options)
     # browser = driver
+    
 
     return browser
 
@@ -169,7 +173,7 @@ def fill_services_value(browser, df, i):
     if browser.find_element(By.ID, valor_id) is not num:
         try:
             browser.find_element(By.ID, valor_id).send_keys((Keys.CONTROL + 'a') + Keys.BACK_SPACE)
-            browser.find_element(By.ID, valor_id).send_keys(num[0] + ',' + num[1] + Keys.TAB)
+            browser.find_element(By.ID, valor_id).send_keys(num[0] + ',' + num[1] + (Keys.TAB * 3))
             print(f'value = {num[0]},{num[1]}')
         except:
             print('error fill_services_value()')
@@ -177,15 +181,16 @@ def fill_services_value(browser, df, i):
 
 
 def add_service(browser, df, i):
-    add_btn_xpath = '//*[@id="formEmissaoNFConvencional:btnAddItem"]/span[1]'
+    add_btn_xpath = '/html/body/section/div/section/form/div[2]/div[1]/section/div/div[4]/div[2]/div[1]/div[2]/div[5]/button/span[2]'
+    # add_btn = "#formEmissaoNFConvencional\\:btnAddItem > span:nth-child(2)"
     service_added = '//*[@id="formEmissaoNFConvencional:listaItensNota_data"]/tr/td[1]'
     try:
+        time.sleep(0.1)
         browser.find_element(By.XPATH, add_btn_xpath).click()
-        # time.sleep(2)
-        wait = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, service_added)))
+        # wait = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, service_added)))
         print('service added')
     except :
-        print('error')
+        print('error add_service')
         exit()
 
 
@@ -209,7 +214,7 @@ def finish(browser, df, i):
         exit()
     try:
         time.sleep(0.5)
-        browser.find_element(By.XPATH, page_confirm_btn_2).click()  # Page confirm of the page confirm
+        # browser.find_element(By.XPATH, page_confirm_btn_2).click()  # Page confirm of the page confirm
         # time.sleep(5)
         print('confirm button')
     except:
