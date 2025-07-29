@@ -174,7 +174,7 @@ def add_service(browser, df, i):
     add_btn_xpath = '/html/body/section/div/section/form/div[2]/div[1]/section/div/div[4]/div[2]/div[1]/div[2]/div[5]/button/span[2]'
     service_added = '//*[@id="formEmissaoNFConvencional:listaItensNota_data"]/tr/td[1]'
     try:
-        time.sleep(0.1)
+        time.sleep(0.5)
         browser.find_element(By.XPATH, add_btn_xpath).click()
         # wait = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, service_added)))
         print('service added')
@@ -203,7 +203,7 @@ def finish(browser, df, i):
         exit()
     try:
         time.sleep(0.5)
-        # browser.find_element(By.XPATH, page_confirm_btn_2).click()  # Page confirm of the page confirm
+        browser.find_element(By.XPATH, page_confirm_btn_2).click()  # Page confirm of the page confirm
         # time.sleep(5)
         print('confirm button')
     except:
