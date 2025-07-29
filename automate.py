@@ -16,15 +16,12 @@ import os
 
 def data_read():
     data = pd.read_excel('boleto.xlsx')
-    # df = pd.DataFrame(data, columns = ['CPF', 'VALOR', 'NOME', 'BOOLEAN'])
     df = pd.DataFrame(data)
 
     load_dotenv()
     username = os.getenv("LOGIN")
     password = os.getenv("PASSWORD")
-    path = os.getenv("PATH_FILE")
-    
-
+    path = os.getenv("PATH_URL")
 
     return df, username, password, path
 
@@ -37,16 +34,10 @@ def open_browser():
 
     browser = webdriver.Firefox(service=service, options=options)
 
-    # options = webdriver.FirefoxOptions()
-    # driver = webdriver.Firefox(options=options)
-    # browser = driver
-    
-
     return browser
 
 
 def login(browser, username, password, path):
-    # old_version = browser = webbrowser.Chrome()
     browser.get(path + '/issweb/paginas/login')
 
     browser.find_element(By.XPATH, '//*[@id="username"]').send_keys(username)
@@ -135,11 +126,10 @@ def find_cpf_cpnj(browser, df, i):
 
 
 def compare_names(browser, df, i):
-    # Need to compare the Web_name with the Excel_name
     nome_id = 'formEmissaoNFConvencional:razaoNome'
     web_name = unidecode.unidecode(browser.find_element(By.ID, nome_id).get_attribute('value')).upper()
     excel_name = unidecode.unidecode(df.loc[i]["NOME"]).upper()
-    if web_name != excel_name:  # compare
+    if web_name != excel_name:
         try:
             browser.find_element(By.ID, nome_id).send_keys((Keys.CONTROL + 'a') + Keys.BACK_SPACE)
         except:
@@ -182,7 +172,6 @@ def fill_services_value(browser, df, i):
 
 def add_service(browser, df, i):
     add_btn_xpath = '/html/body/section/div/section/form/div[2]/div[1]/section/div/div[4]/div[2]/div[1]/div[2]/div[5]/button/span[2]'
-    # add_btn = "#formEmissaoNFConvencional\\:btnAddItem > span:nth-child(2)"
     service_added = '//*[@id="formEmissaoNFConvencional:listaItensNota_data"]/tr/td[1]'
     try:
         time.sleep(0.1)
@@ -270,7 +259,7 @@ def main():
     login(browser, username, password, path)
     start_line = 3  # default = 3
     # start_line = start_line + 2  # To start one number plus "i" && +2 to continue case the for loop breaks
-    end_line = 250
+    end_line = 6
     # for i in range(start_line - 2, end_line - 1):
     for i in range(start_line - 2, end_line - 1):  # Default: for i in range(0, len(df)) or range((2)-2, len(df)):
         print(f'before call function in loop {time.perf_counter()}')
