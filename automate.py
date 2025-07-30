@@ -257,9 +257,9 @@ def main():
     df, username, password, path = data_read()
     browser = open_browser()
     login(browser, username, password, path)
-    start_line = 3  # default = 3
-    # start_line = start_line + 2  # To start one number plus "i" && +2 to continue case the for loop breaks
-    end_line = 6
+    start_line = 30  # default = 3
+    # start_line = start_line + 2  # To start one number plus "i" && +3 to continue case the for loop breaks
+    end_line = 230
     # for i in range(start_line - 2, end_line - 1):
     for i in range(start_line - 2, end_line - 1):  # Default: for i in range(0, len(df)) or range((2)-2, len(df)):
         print(f'before call function in loop {time.perf_counter()}')
