@@ -257,7 +257,7 @@ def main():
     df, username, password, path = data_read()
     browser = open_browser()
     login(browser, username, password, path)
-    start_line = 36  # default = 3
+    start_line = 3  # default = 3
     # start_line = start_line + 2  # To start one number plus "i" && +2 to continue case the for loop breaks
     end_line = 230
     # for i in range(start_line - 2, end_line - 1):
