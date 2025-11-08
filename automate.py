@@ -52,7 +52,7 @@ def login(browser, username, password, path):
 
 
 def change_data(browser, df, i):
-    data_change = '31052025'  # CHANGE DD/MM/YYYY
+    data_change = '31102025'  # CHANGE DD/MM/YYYY
     browser.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:imDataCompetencia_input"]').click()
     browser.find_element(By.XPATH, '//*[@id="formEmissaoNFConvencional:imDataCompetencia_input"]').send_keys(data_change + Keys.TAB)
     time.sleep(1)
@@ -203,7 +203,7 @@ def finish(browser, df, i):
         exit()
     try:
         time.sleep(0.5)
-        # browser.find_element(By.XPATH, page_confirm_btn_2).click()  # Page confirm of the page confirm
+        browser.find_element(By.XPATH, page_confirm_btn_2).click()  # Page confirm of the page confirm
         # time.sleep(5)
         print('confirm button')
     except:
@@ -257,9 +257,9 @@ def main():
     df, username, password, path = data_read()
     browser = open_browser()
     login(browser, username, password, path)
-    start_line = 3  # default = 3
+    start_line = 4  # default = 3
     # start_line = start_line + 2  # To start one number plus "i" && +2 to continue case the for loop breaks
-    end_line = 220
+    end_line = 200
     # for i in range(start_line - 2, end_line - 1):
     for i in range(start_line - 2, end_line - 1):  # Default: for i in range(0, len(df)) or range((2)-2, len(df)):
         print(f'before call function in loop {time.perf_counter()}')
