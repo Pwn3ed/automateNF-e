@@ -203,7 +203,7 @@ def finish(browser, df, i):
         exit()
     try:
         time.sleep(0.5)
-        browser.find_element(By.XPATH, page_confirm_btn_2).click()  # Page confirm of the page confirm
+        # browser.find_element(By.XPATH, page_confirm_btn_2).click()  # Page confirm of the page confirm
         # time.sleep(5)
         print('confirm button')
     except:
@@ -259,7 +259,7 @@ def main():
     login(browser, username, password, path)
     start_line = 3  # default = 3
     # start_line = start_line + 2  # To start one number plus "i" && +2 to continue case the for loop breaks
-    end_line = 230
+    end_line = 220
     # for i in range(start_line - 2, end_line - 1):
     for i in range(start_line - 2, end_line - 1):  # Default: for i in range(0, len(df)) or range((2)-2, len(df)):
         print(f'before call function in loop {time.perf_counter()}')
