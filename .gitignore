@@ -1,2 +1,4 @@
 boleto.xlsx
 .env
+
+__pycache__
