@@ -3,3 +3,4 @@ pandas>=1.3.0
 python-dotenv>=0.21.0
 Unidecode>=1.3.6
 keyboard>=0.13.5
+openpyxl>=3.0.0

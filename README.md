@@ -52,6 +52,10 @@ O projeto espera o binário `geckodriver` presente na raiz (ou ajuste o caminho 
 chmod +x geckodriver
 ```
 
+5) Engine do Excel
+
+O script usa `pandas.read_excel` para carregar `boleto.xlsx`. Para garantir compatibilidade com arquivos .xlsx modernos, `openpyxl` foi adicionada às dependências e está listada em `requirements.txt`.
+
 4) Notas
 
 - Se faltar alguma dependência durante a execução, execute `pip install <pacote>` e atualize `requirements.txt` com `pip freeze > requirements.txt` se desejar fixar versões.
